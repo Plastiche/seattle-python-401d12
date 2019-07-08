@@ -40,6 +40,23 @@ Tea
 Unicorn Tears
 """
 
+
+
+items = {
+    'Wings' : 0,
+    'Cookies' : 0,
+    'Spring Rolls' : 0,
+    'Salmon' : 0,
+    'Steak' : 0,
+    'Meat Tornado' : 0,
+    'A Literal Garden' : 0,
+    'Ice Cream' : 0,
+    'Cake' : 0,
+    'Pie' : 0,
+    'Coffee' : 0,
+    'Tea' : 0,
+    'Unicorn Tears' : 0,
+}
 print(welcome, menu)
 
 while True:
@@ -47,5 +64,9 @@ while True:
 
     if order == 'quit':
         break
-    
-    print('** x order of ' + order + ' have been added to your meal **')
+
+    if order in items:
+        items[order] += 1
+        print(f'** {items[order]} order of {order} have been added to your meal **')
+    else:
+        print('ruh roh')
