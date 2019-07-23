@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './form.js';
+import Person from './person.js'
 
 class App extends React.Component {
   constructor(props) {
