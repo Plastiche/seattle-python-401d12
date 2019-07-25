@@ -1,28 +1,28 @@
-closers = {
-        ')':'(',
-        ']':'[',
-        '}':'{',
-    }
+def check_brackets(txt):
+    """
+    recursive bracket validator
+    """
 
-openers = ['(','{','[']
+    braces = {
+            ')':'(',
+            ']':'[',
+            '}':'{',
+        }
 
-def check_brackets_recursive(txt):
-    
     stack = Stack()
 
     def walk(index = 0):
-
         char = txt[index]
-        
-        if char in openers:
-            stack.push(char)
-            
-        if char in closers:
-            
-            if stack.peek() != closers[char]:
-                return False
 
+        if char in braces.values(): # openers
+            stack.push(char)
+
+        if char in braces: # closers
+            candidate = stack.peek()
+            if candidate != braces[char]:
+                return False
             stack.pop()
+            
 
         if index + 1 < len(txt):
             return walk(index + 1)
@@ -32,23 +32,34 @@ def check_brackets_recursive(txt):
 
     return walk() and stack.is_empty()
 
+def check_brackets_iterative(txt):
+    """
+    iterative bracket validator
+    """
 
-def check_brackets(txt):
+    braces = {
+        ')':'(',
+        ']':'[',
+        '}':'{',
+    }
     
     stack = Stack()
 
     for char in txt:
-        if char in openers:
+        if char in braces.values():
             stack.push(char)
             continue
 
-        if char in closers:
-            if stack.peek() != closers[char]:
+        if char in braces:
+            if stack.peek() != braces[char]:
                 return False
             stack.pop()
             
 
     return stack.is_empty()
+
+
+# Helper Classes
 
 class LinkedList:
     def __init__(self):
