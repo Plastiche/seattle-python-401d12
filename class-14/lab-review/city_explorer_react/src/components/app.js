@@ -12,20 +12,27 @@ class App extends Component {
     super(props);
     this.state = {
       location: null,
-      forecasts: []
+      forecasts: [],
+      movies: [],
+      events: [],
+      reviews: [],
+      trails: [],
     }
   }
+
+  async getApiData(baseUrl, location, resourceName) {
+
+    const queryString = `data[formatted_query]=${location.formatted_query}&data[latitude]=${location.latitude}&data[longitude]=${location.longitude}&data[search_query]=${location.search_query}`;
+
+    const fullUrl = `${baseUrl}/${resourceName}?${queryString}`;
+
+    const response = await superagent.get(fullUrl);
+
+    return response.body
+
+  }
   handleSearch = async query => {
-
-    this.setState({
-      location : null,
-      forecasts : [],
-      movies : [],
-      events : [],
-      reviews : [],
-      trails : []
-    });
-
+    
     const url = 'https://jb-flask-hello-world.onrender.com';
 
     const locationData = await superagent.get(`${url}/location?data=${query}`);
@@ -37,46 +44,40 @@ class App extends Component {
       longitude : locationData.body.longitude,
     }
 
-    const queryString = `data[formatted_query]=${location.formatted_query}&data[latitude]=${location.latitude}&data[longitude]=${location.longitude}&data[search_query]=${location.search_query}`;
-    
-    const forecasts = await superagent.get(`${url}/weather?${queryString}`);
-
-    const movies = await superagent.get(`${url}/movies?${queryString}`);
-
-    const reviews = await superagent.get(`${url}/yelp?${queryString}`);
-
-    const trails = await superagent.get(`${url}/trails?${queryString}`);
-
-    const events =  await superagent.get(`${url}/events?${queryString}`);
+    const forecasts = await this.getApiData(url, location, 'weather');
+    const movies = await this.getApiData(url, location, 'movies');
+    const events = await this.getApiData(url, location, 'events');
+    const trails = await this.getApiData(url, location, 'trails');
+    const reviews = await this.getApiData(url, location, 'yelp');
 
     this.setState({
-      location, 
-      forecasts : forecasts.body, 
-      movies : movies.body,
-      events : events.body,
-      reviews : reviews.body,
-      trails : trails.body
-
-     });
+      location,
+      forecasts,
+      movies,
+      events,
+      trails,
+      reviews,
+    })
   }
   
   render() {
     return (
       <>
-        <Header/>
+        <Header />
         <SearchForm handleSearch={this.handleSearch} />
-        {this.state.location &&
+        {this.state.location && (
           <>
             <Map latitude={this.state.location.latitude} longitude={this.state.location.longitude} />
             <SearchResults 
               forecasts={this.state.forecasts} 
-              movies={this.state.movies}
-              reviews={this.state.reviews}
-              events={this.state.events}
-              trails={this.state.trails}
+              movies={this.state.movies} 
+              events={this.state.events} 
+              reviews={this.state.reviews} 
+              trails={this.state.trails} 
             />
           </>
-        }
+        )}
+        
       </>
     );
   }
