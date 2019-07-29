@@ -33,4 +33,3 @@ def test_create_band_and_fetch(client, sample_band):
     band_dict = json.loads(res.data.decode())
 
     assert band_dict["name"] == "The Stooges"
-
