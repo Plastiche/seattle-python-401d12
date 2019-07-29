@@ -24,6 +24,19 @@ def test_sample_band(sample_band):
     assert sample_band.name == "The Stooges"
 
 
+def test_create_band_and_check(client):
+
+    client.post("/bands", data={"name": "The Stooges"})
+
+    res = client.get('/bands')
+
+    bands = json.loads(res.data.decode())
+
+    assert len(bands) == 1
+
+    assert bands[0]["name"] == "The Stooges"
+
+
 def test_create_band_and_fetch(client, sample_band):
 
     res = client.get(f"/bands/{sample_band.id}")
