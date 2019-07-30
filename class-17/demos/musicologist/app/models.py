@@ -8,8 +8,8 @@ class Band(db.Model):
 
     def to_dict(self):
         return {
-            "id": self.id, 
-            "name": self.name, 
+            "id": self.id,
+            "name": self.name,
             "artists": [artist.to_dict() for artist in self.artists]
         }
 

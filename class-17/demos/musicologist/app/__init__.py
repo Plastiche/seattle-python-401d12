@@ -27,9 +27,14 @@ def create_app(ConfigClass):
             bands = [band.to_dict() for band in Band.query.all()]
             return jsonify(bands)
 
-        @app.route("/bands/<int:id>")
+        @app.route("/bands/<int:id>", methods=["GET"])
         def one_band(id):
             band = Band.query.get(id)
+            return jsonify(band.to_dict())
+
+        @app.route("/bands/<string:name>", methods=["GET"])
+        def one_band_by_name(name):
+            band = Band.query.filter_by(name=name).first()
             return jsonify(band.to_dict())
 
         @app.route("/bands", methods=["POST"])
@@ -44,7 +49,10 @@ def create_app(ConfigClass):
         @app.route("/bands/<int:id>", methods=["PUT"])
         def update_band(id):
             band_info = request.json or request.form
+
+            # HIDDEN ASSUMPTION
             band_id = Band.query.filter_by(id=id).update(band_info)
+
             db.session.commit()
             return jsonify(band_id)
 
@@ -55,14 +63,11 @@ def create_app(ConfigClass):
             db.session.commit()
             return jsonify(id)
 
-        @app.route("/bands/<string:name>", methods=["GET"])
-        def get_band_by_name(name):
-            """
-            somehow this route is different than /bands/id
-            Magical!
-            """
-            band = Band.query.filter_by(name=name).first()
-            return jsonify(band.to_dict())
+
+
+
+        
+
 
         #######################################
         ##   Artist CRUD  #####################
@@ -87,19 +92,6 @@ def create_app(ConfigClass):
             db.session.commit()
 
             return jsonify(artist.to_dict())
-
-        @app.route("/artists/<int:id>", methods=["DELETE"])
-        def delete_artist(id):
-            pass
-
-        @app.route("/artists/<int:id>", methods=["PUT"])
-        def update_artist(id):
-            pass
-
-        @app.route("/bands/<int:id>/artists")
-        def get_artists_in_band(id):
-            artists = [artist.to_dict() for artist in Band.query.get(id).artists]
-            return jsonify(artists)
 
         return app
 

@@ -1,4 +1,5 @@
 import json
+import pytest
 
 
 def test_get_no_bands(client):
@@ -70,10 +71,26 @@ def test_update_band(client, sample_band):
 
     assert band_dict["name"] == "Not The Stooges"
 
+@pytest.mark.skip('DANGER: come back here soon')
+def test_update_band_badly(client, sample_band):
+
+    res = client.put(f"/bands/{sample_band.id}", data={"band_name": "Not The Stooges"})
+
+    assert res.status_code == 200
+
+    assert json.loads(res.data.decode()) == sample_band.id
+
+    res = client.get(f"/bands/{sample_band.id}")
+
+    band_dict = json.loads(res.data.decode())
+
+    assert band_dict["name"] == "Not The Stooges"
+
 
 def test_get_band_with_artists(client, sample_artist):
     res = client.get(f"/bands/{sample_artist.band_id}")
 
+    # make decode helper
     band_dict = json.loads(res.data.decode())
 
     assert band_dict["artists"][0]["name"] == "Iggy Pop"
@@ -85,8 +102,20 @@ def test_delete_band(client, sample_band):
 
     assert res.status_code == 200
 
+    res = client.get("/bands")
+
+    assert json.loads(res.data.decode()) == []
+
+@pytest.mark.skip()
+def test_band_bad_id(client):
+    res = client.get(f"/bands/100")
+    assert res.status_code == 404
+
+
+
 
 # This is ridiculous
+
 def test_get_band_by_name(client, sample_band):
     res = client.get("/bands/The Stooges")
     assert res.status_code == 200
