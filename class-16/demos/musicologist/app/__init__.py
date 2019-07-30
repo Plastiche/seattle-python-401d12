@@ -41,13 +41,28 @@ def create_app(ConfigClass):
 
             return jsonify(band.to_dict())
 
-        @app.route("/bands/<int:id>", methods=["DELETE"])
-        def delete_band(id):
-            pass
-
         @app.route("/bands/<int:id>", methods=["PUT"])
         def update_band(id):
-            pass
+            band_info = request.json or request.form
+            band_id = Band.query.filter_by(id=id).update(band_info)
+            db.session.commit()
+            return jsonify(band_id)
+
+        @app.route("/bands/<int:id>", methods=["DELETE"])
+        def delete_band(id):
+            band = Band.query.get(id)
+            db.session.delete(band)
+            db.session.commit()
+            return jsonify(id)
+
+        @app.route("/bands/<string:name>", methods=["GET"])
+        def get_band_by_name(name):
+            """
+            somehow this route is different than /bands/id
+            Magical!
+            """
+            band = Band.query.filter_by(name=name).first()
+            return jsonify(band.to_dict())
 
         #######################################
         ##   Artist CRUD  #####################
@@ -65,7 +80,9 @@ def create_app(ConfigClass):
         @app.route("/artists", methods=["POST"])
         def create_artist():
             artist_info = request.json or request.form
-            artist = Artist(name=artist_info.get("name"), band_id=artist_info.get("band"))
+            artist = Artist(
+                name=artist_info.get("name"), band_id=artist_info.get("band")
+            )
             db.session.add(artist)
             db.session.commit()
 

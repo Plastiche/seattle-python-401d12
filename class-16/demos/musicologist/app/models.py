@@ -7,7 +7,11 @@ class Band(db.Model):
     artists = db.relationship("Artist", backref="band", lazy=True)
 
     def to_dict(self):
-        return {"id": self.id, "name": self.name}
+        return {
+            "id": self.id, 
+            "name": self.name, 
+            "artists": [artist.to_dict() for artist in self.artists]
+        }
 
 
 class Artist(db.Model):
