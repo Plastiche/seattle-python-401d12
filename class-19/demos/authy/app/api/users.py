@@ -59,3 +59,6 @@ def update_user(id):
 @token_auth.login_required
 def ping():
     return 'pong'
+
+
+# TODO: Add own CRUD routes to work with your models
