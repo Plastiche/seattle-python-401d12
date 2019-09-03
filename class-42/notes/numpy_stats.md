@@ -21,10 +21,6 @@ There are other more broad definitions for each of those, but for our purposes t
 
 For a given set of measurements, the arithmetic mean is defined as **the cumulative sum of values divided by the total number of values**.
 We calculate the mean to find **the value around which our data clusters.**
-Expressed mathematically, for values in `X` we define the mean as:
-
-![average equation](http://www.sciweavers.org/upload/Tex2Img_1517529934/render.png
-){:target="_blank"}
 
 We're a coding school, so we should be able to write something like this in code.
 If you're calculating the mean of, say, a list of values, it'd look something like this:
@@ -162,10 +158,10 @@ By math, we define it in the following way:
 
 Let's break this down into the questions that this equation answers:
 
-- ![distance from mean](http://www.sciweavers.org/upload/Tex2Img_1517533356/render.png){:target="_blank"}: "What's my distance from the mean?"
-- ![total distance across data set](http://www.sciweavers.org/upload/Tex2Img_1517533496/render.png){:target="_blank"}: "What’s the total distance from the mean across my data set?"
-- ![average distance from the mean](http://www.sciweavers.org/upload/Tex2Img_1517533516/render.png){:target="_blank"}: "What’s my average distance from the mean across my data set?"
-- ![unit correction and reduction](http://www.sciweavers.org/upload/Tex2Img_1517533536/render.png){:target="_blank"}: "Get my units right and reduce down from squared-distance."
+- "What's my distance from the mean?"
+- "What’s the total distance from the mean across my data set?"
+- "What’s my average distance from the mean across my data set?"
+- "Get my units right and reduce down from squared-distance."
 
 The larger the spread of the data, the larger the standard deviation.
 Consider the opposite––if every data point had the exact same value, the standard deviation would be zero.
@@ -225,9 +221,7 @@ Much like how we found the median, we can find quantiles:
 ```
 
 As with the median's relationship to the mean, we can use these quantiles to get an idea of the _spread_ of the data, but with **a metric that's insensitive to outliers**.
-That quantile-based spread is called the **interquartile range**, and is as follows:
-
-![interquartile range equation](http://www.sciweavers.org/upload/Tex2Img_1517534056/render.png){:target="_blank"}
+That quantile-based spread is called the **interquartile range**.
 
 This answers the quation of "what's the spread of the _**middle**_ of our data?"
 
