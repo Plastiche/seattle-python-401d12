@@ -10,11 +10,13 @@
 ## Outline
 
 - Code Review
+- [Jupyter Lab]
 - [Descriptive Statistics and Numpy]
 - [Working with Pandas]
 
 
 <!-- links -->
+[Jupyter Lab]: https://jupyterlab.readthedocs.io/en/stable/
 [Descriptive Statistics and Numpy]: ./notes/numpy_stats.md
 [Working with Pandas]: ./notes/pandas.md
 
