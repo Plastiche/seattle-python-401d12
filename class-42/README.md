@@ -1,4 +1,4 @@
-# ![cf](http://i.imgur.com/7v5ASc8.png) Class 16: Data Analysis
+# ![cf](http://i.imgur.com/7v5ASc8.png) Data Analysis
 
 ## Learning Objectives
 
@@ -16,7 +16,6 @@
 
 
 <!-- links -->
-[Python and Jupyter Notebook]: ./notes/jupyter_notebook.md
 [Descriptive Statistics and Numpy]: ./notes/numpy_stats.md
 [Working with Pandas]: ./notes/pandas.md
 
