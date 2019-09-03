@@ -10,7 +10,6 @@
 ## Outline
 
 - Code Review
-- [Python and Jupyter Notebook]
 - [Descriptive Statistics and Numpy]
 - [Working with Pandas]
 
