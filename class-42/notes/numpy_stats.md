@@ -16,7 +16,7 @@ What follows will build on that.
 
 ## Arithmetic Mean
 
-The **arithmetic mean** is typically known as the [average](https://en.wikipedia.org/wiki/Average){:target="_blank"}, or more simply the [mean](https://en.wikipedia.org/wiki/Mean){:target="_blank"}.
+The **arithmetic mean** is typically known as the [average](https://en.wikipedia.org/wiki/Average) , or more simply the [mean](https://en.wikipedia.org/wiki/Mean) .
 There are other more broad definitions for each of those, but for our purposes they're interchangeable.
 
 For a given set of measurements, the arithmetic mean is defined as **the cumulative sum of values divided by the total number of values**.
@@ -30,7 +30,7 @@ def mean(nums):
     return sum(nums) / len(nums)
 ```
 
-Let's consider the following set of [Google stock prices](https://www.nasdaq.com/symbol/googl/historical){:target="_blank"} during September 2016:
+Let's consider the following set of [Google stock prices](https://www.nasdaq.com/symbol/googl/historical)  during September 2016:
 
 
 | Date | Open | High | Low | Close |
@@ -74,7 +74,7 @@ we can find the average closing price of Google in september by applying the `su
 773.6195238095238
 ```
 
-One *major* drawback to the mean is that it's **very** sensitive to [outliers](https://en.wikipedia.org/wiki/Outlier){:target="_blank"} in the data.
+One *major* drawback to the mean is that it's **very** sensitive to [outliers](https://en.wikipedia.org/wiki/Outlier)  in the data.
 What this means is that if there's a small number of values that are waaaaay outside the norm (either above or below), they'll heavily influence the mean and so that mean will no longer be a good representative of the data.
 
 As an example with our Google data, the prices generally hover around $775 per share.
@@ -84,7 +84,7 @@ Another $10 day would mean $707.22 per share, even though that's not representat
 ## Median
 
 The median is **the literal middle** of your data if your data was sorted.
-It's also known as the 50th percentile (more on that in [quantiles](#quantiles){:target="_blank"}).
+It's also known as the 50th percentile (more on that in [quantiles](#quantiles) ).
 If your data has an even number of items, then the median is the average of the two values surrounding the middle of the data.
 
 So, if you've got a sorted list of 5 values, the median value would be at `mylist[2]`.
@@ -154,7 +154,7 @@ What's the standard for that deviation?
 
 By math, we define it in the following way:
 
-![equation for standard deviation](http://www.sciweavers.org/upload/Tex2Img_1517533289/render.png){:target="_blank"}
+![equation for standard deviation](http://www.sciweavers.org/upload/Tex2Img_1517533289/render.png) 
 
 Let's break this down into the questions that this equation answers:
 
@@ -234,7 +234,7 @@ With our Google data, that interquartile range is
 
 ## Introduction to NumPy
 
-[NumPy](http://www.numpy.org/){:target="_blank"} is the primary package for doing scientific/numerical computing in Python.
+[NumPy](http://www.numpy.org/)  is the primary package for doing scientific/numerical computing in Python.
 You can do lovely things like linear algebra (i.e. matrix math), as well as store regular data like floats, ints, strings, and dicts.
 
 NumPy comes pre-built with some objects and functions that already exist as built-ins for Python or as a part of Python's standard library.
@@ -464,7 +464,7 @@ array([ True,  True,  True,  True,  True])
 ```
 
 NumPy is also great for reading and writing numerical data.
-[np.loadtxt](https://scipython.com/book/chapter-6-numpy/examples/using-numpys-loadtxt-method/){:target="_blank"} and [np.genfromtxt](https://www.dataquest.io/blog/numpy-tutorial-python/){:target="_blank"} are the two functions used for reading regularly-delimited files like CSV files.
+[np.loadtxt](https://scipython.com/book/chapter-6-numpy/examples/using-numpys-loadtxt-method/)  and [np.genfromtxt](https://www.dataquest.io/blog/numpy-tutorial-python/)  are the two functions used for reading regularly-delimited files like CSV files.
 That data is read one row at a time directly into an array of arrays.
 This can be somewhat inconvenient when reading in most data sets, as they will often times have different data types across one row.
 
